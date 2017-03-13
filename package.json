@@ -1,0 +1,45 @@
+{
+  "name": "render-vendor",
+  "version": "0.0.1",
+  "description": "Long-lived Phantom.js Renderer processes in a lib",
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "main": "dist/render-vendor.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "prepublish": "npm run build",
+    "lint": "./node_modules/.bin/eslint src"
+  },
+  "author": "Aidan Nulman",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-preset-env": "^1.2.1",
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "phantomjs-prebuilt": "^2.1.4",
+    "request": "^2.81.0",
+    "rsvp": "^3.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/isleofcode/render-vendor.git"
+  },
+  "keywords": [
+    "html",
+    "pdf",
+    "png",
+    "phantom",
+    "phantomjs",
+    "nodejs"
+  ],
+  "bugs": {
+    "url": "https://github.com/isleofcode/render-vendor/issues"
+  },
+  "homepage": "https://github.com/isleofcode/render-vendor"
+}
