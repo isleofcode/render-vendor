@@ -23,15 +23,16 @@ $ npm install render-vendor --save
 
 ## Usage
 ```javascript
-const fs = require('fs');
-const RenderVendor = require('render-vendor');
+import fs from 'fs';
+import RenderVendor from 'render-vendor';
+
 const { Renderer } = RenderVendor;
 
-console.log(RenderVendor.all.length);
+console.log(RenderVendor.renderers().length);
 // 0
 
 RenderVendor.create(rendererOptions)
-  .render({ type: 'pdf' })
+  .render(renderOptions)
   .then((tmpPath) => {
     let buffer = fs.readFileSync(tmpPath);
 
@@ -42,18 +43,18 @@ RenderVendor.create(rendererOptions)
     console.error(err);
   });
 
-console.log(Renderer.all.length);
+console.log(RenderVendor.renderers().length);
 // 1
 
 new Renderer({});
 // error: missing port
 
 let renderer = new Renderer({ port: 8181 });
-console.log(Renderer.all.length);
+console.log(RenderVendor.renderers().length);
 // 1
 
 RenderVendor.shutdown();
-console.log(Renderer.all.length);
+console.log(RenderVendor.renderers().length);
 // 0
 
 renderer.shutdown();
@@ -131,10 +132,6 @@ all are present, `(height + width)` are used.
 Allowed units in all cases are mm, cm, in, & px.
 
 #### Headers & Footers
-```
-
-#### Headers & Footers
-
 RenderVendor uses the same header & footer handling as `html-pdf`. You can set
 it in your config object, or it can be read from the HTML source.
 
