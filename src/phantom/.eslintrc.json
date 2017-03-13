@@ -1,0 +1,12 @@
+{
+  "globals": {
+    "document": true,
+    "phantom": true
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "import/no-dynamic-require": 0
+  }
+}
