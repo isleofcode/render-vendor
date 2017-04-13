@@ -56,6 +56,18 @@ Page.computePaperSize = function computePaperSize(page, options) {
   if (options.height !== undefined && options.width !== undefined) {
     paper.width = options.width;
     paper.height = options.height;
+  } else if (options.isSinglePage === true) {
+    let { width, height } = page.evaluate((heightMultiplier) => {
+      let body = document.getElementsByTagName('body')[0];
+
+      return {
+        width: body.scrollWidth,
+        height: body.scrollHeight * heightMultiplier
+      };
+    }, options.singlePageHeightMultiplier || 1.31);
+
+    paper.width = options.width || width;
+    paper.height = options.height || height;
   } else {
     paper.format = options.format || 'A4';
     paper.orientation = options.orientation || 'portrait';

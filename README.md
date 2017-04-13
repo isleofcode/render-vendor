@@ -111,15 +111,17 @@ takes precedence.
 Based on Phantom.js'
 [PaperSize](http://phantomjs.org/api/webpage/property/paper-size.html) options.
 
-| Key         | Type           | Required | Default | Notes                                                              |
-|-------------|----------------|----------|---------|--------------------------------------------------------------------|
-| height      | String         | Y\*      | -       | e.g. `10.5in`                                                      |
-| width       | String         | Y\*      | -       | e.g. `8in`                                                         |
-| format      | String         | Y\*      | -       | `[A3|A4|A5|Legal|Letter|Tabloid]`                                  |
-| orientation | String         | Y\*      | -       | `[portrait|landscape]`                                             |
-| margin      | String|Object  | N        | 0       | e.g. `0.5in`, `{ top: 0, bottom: 0, left: '1.5in', right: '2in' }` |
-| header      | SectionOptions | N        | -       |                                                                    |
-| footer      | SectionOptions | N        | -       |                                                                    |
+| Key                        | Type           | Required | Default | Notes                                                              |
+|----------------------------|----------------|----------|---------|--------------------------------------------------------------------|
+| height                     | String         | Y\*      | -       | e.g. `10.5in`                                                      |
+| width                      | String         | Y\*      | -       | e.g. `8in`                                                         |
+| isSinglePage               | Boolean        | N        | -       | Set to true if you'd like to render to a single page               |
+| singlePageHeightMultiplier | Number         | N        | 1.31    | Configure this if the computed single-page height needs massaging  |
+| format                     | String         | Y\*      | -       | `[A3|A4|A5|Legal|Letter|Tabloid]`                                  |
+| orientation                | String         | Y\*      | -       | `[portrait|landscape]`                                             |
+| margin                     | String|Object  | N        | 0       | e.g. `0.5in`, `{ top: 0, bottom: 0, left: '1.5in', right: '2in' }` |
+| header                     | SectionOptions | N        | -       |                                                                    |
+| footer                     | SectionOptions | N        | -       |                                                                    |
 
 \* _Either_ `(height + width)` or `(format + orientation)` are required. If
 all are present, `(height + width)` are used.
