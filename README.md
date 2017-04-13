@@ -78,12 +78,15 @@ renderer.shutdown();
 | shutdown()       | -        | Shuts down renderer cleanly to prevent process leaks |
 
 ### RendererOptions
-| Key            | Type           | Required | Default  | Notes                                         |
-|----------------|----------------|----------|----------|-----------------------------------------------|
-| phantomOptions | PhantomOptions | N        | -        |                                               |
-| port           | String         | Y\*      | 8180(+n) | Port on which to run the Phantom.js webserver |
-| url            | String         | N\*\*    | -        | URL to load in the Phantom.js page            |
-| html           | String         | N        | -        | Content to set in the Phantom.js page         |
+| Key            | Type           | Required | Default  | Notes                                          |
+|----------------|----------------|----------|----------|------------------------------------------------|
+| phantomOptions | PhantomOptions | N        | -        |                                                |
+| port           | String         | Y\*      | 8180(+n) | Port on which to run the Phantom.js webserver  |
+| url            | String         | N\*\*    | -        | URL to load in the Phantom.js page             |
+| html           | String         | N        | -        | Content to set in the Phantom.js page          |
+| dpi            | Number         | N        | -        | Configure rendered dpi, for non-px size values |
+| zoomFactor     | Number         | N        | 1        | Scales images when not rendering PDFs          |
+| viewportSize   | Object         | N        | -        | Pass in { width, height } to size viewport     |
 
 \* Port is a required argument for Renderer constructors, but is automatically
 set by `RenderVendor.create` if not passed.
@@ -117,7 +120,6 @@ Based on Phantom.js'
 | border      | String|Object  | N        | 0       | e.g. `0.5in`, `{ top: 0, bottom: 0, left: '1.5in', right: '2in' }` |
 | header      | SectionOptions | N        | -       |                                                                    |
 | footer      | SectionOptions | N        | -       |                                                                    |
-| zoomFactor  | Number         | N        | 1       | Scales images when not rendering PDFs                              |
 
 \* _Either_ `(height + width)` or `(format + orientation)` are required. If
 all are present, `(height + width)` are used.

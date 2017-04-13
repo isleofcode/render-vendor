@@ -8,17 +8,9 @@ const PhantomError = require(`${phantom.libraryPath}/utils/error`).default;
 const logger = new Logger('Page');
 
 export default class Page {
-  constructor({ viewportSize, zoomFactor }) {
+  constructor() {
     this.page = webpage.create();
     this.canPrint = false;
-
-    if (viewportSize !== undefined) {
-      this.page.viewportSize = viewportSize;
-    }
-
-    if (zoomFactor !== undefined) {
-      this.page.zoomFactor = zoomFactor;
-    }
 
     this.page.onError = (msg, trace) => {
       let error = new PhantomError(msg, trace);

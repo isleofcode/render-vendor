@@ -13,7 +13,19 @@ export default class Server {
   }
 
   /* eslint-disable no-param-reassign */
-  start({ port = 8180, url, html } = {}) {
+  start({ port = 8180, url, html, dpi, viewportSize, zoomFactor } = {}) {
+    if (dpi !== undefined) {
+      this.page.dpi = dpi;
+    }
+
+    if (viewportSize !== undefined) {
+      this.page.viewportSize = viewportSize;
+    }
+
+    if (zoomFactor !== undefined) {
+      this.page.zoomFactor = zoomFactor;
+    }
+
     this.page.load({ url, html });
     this.server.listen(port, (request, response) => {
       try {
