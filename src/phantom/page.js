@@ -51,7 +51,7 @@ export default class Page {
 
 Page.computePaperSize = function computePaperSize(page, options) {
   let content = Page.getPageContent(page);
-  let paper = { border: options.border || '0' };
+  let paper = { margin: options.margin || '0' };
 
   if (options.height !== undefined && options.width !== undefined) {
     paper.width = options.width;

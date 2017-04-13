@@ -117,7 +117,7 @@ Based on Phantom.js'
 | width       | String         | Y\*      | -       | e.g. `8in`                                                         |
 | format      | String         | Y\*      | -       | `[A3|A4|A5|Legal|Letter|Tabloid]`                                  |
 | orientation | String         | Y\*      | -       | `[portrait|landscape]`                                             |
-| border      | String|Object  | N        | 0       | e.g. `0.5in`, `{ top: 0, bottom: 0, left: '1.5in', right: '2in' }` |
+| margin      | String|Object  | N        | 0       | e.g. `0.5in`, `{ top: 0, bottom: 0, left: '1.5in', right: '2in' }` |
 | header      | SectionOptions | N        | -       |                                                                    |
 | footer      | SectionOptions | N        | -       |                                                                    |
 
