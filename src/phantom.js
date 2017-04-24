@@ -34,6 +34,10 @@ export default class Phantom {
   }
 
   shutdown() {
+    if (this.phantom === null || this.phantom === undefined) {
+      return;
+    }
+
     this.phantom.stdin.end();
     this.phantom.kill();
   }
