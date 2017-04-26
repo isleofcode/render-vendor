@@ -34,12 +34,17 @@ export default class Phantom {
   }
 
   shutdown() {
-    if (this.phantom === null || this.phantom === undefined) {
+    let phantom = this.phantom;
+
+    if (phantom === null || phantom === undefined) {
       return;
     }
 
-    this.phantom.stdin.end();
-    this.phantom.kill();
+    if (phantom.stdin !== null && phantom.stdin !== undefined) {
+      phantom.stdin.end();
+    }
+
+    phantom.kill();
   }
 
   _exec(body = {}) {
