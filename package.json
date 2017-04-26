@@ -1,6 +1,6 @@
 {
   "name": "render-vendor",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Long-lived Phantom.js Renderer processes in a lib",
   "engines": {
     "node": ">=4.0.0"
