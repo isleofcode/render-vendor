@@ -1,0 +1,14 @@
+title: render-vendor
+description: "Documentation for render-vendor, a JS lib (& broader pattern) useful for high-throughput HTML => PDF rendering queues"
+author: Isle of Code
+url: "http://render-vendor.com"
+baseurl: ''
+twitter_username: isleOfCode
+github_username:  isleOfCode
+language: en_US
+permalink: none
+markdown: kramdown
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
