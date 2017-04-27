@@ -6,3 +6,6 @@ _site
 # main lib
 node_modules
 dist
+
+# ruby
+.bundle
