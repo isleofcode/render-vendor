@@ -34,8 +34,9 @@ export default class Page {
     }
   }
 
-  render({ type = 'pdf', quality = '75', paperOptions = {} } = {}) {
-    let filename = `/tmp/render-vendor-${system.pid}/${Date.now()}.${type}`;
+  render({ filename, type = 'pdf', quality = '75', paperOptions = {} } = {}) {
+    filename = filename ||
+      `/tmp/render-vendor-${system.pid}/${Date.now()}.${type}`;
 
     if (!this.canPrint) {
       throw new Error('no can print right now');
