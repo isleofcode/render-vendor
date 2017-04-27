@@ -1,0 +1,155 @@
+---
+# Front matter comment to ensure Jekyll properly reads file.
+---
+
+@import 'materialize';
+
+@media (min-width: 991px) {
+  .wrapper {
+    margin-left: 300px;
+  }
+
+  .side-nav {
+    padding: 0px 0px 60px 0px;
+    z-index: 0;
+  }
+
+  footer {
+    margin-left: 300px;
+  }
+
+  .nav-header {
+    height: 63px;
+    background-color: darken($primary-color, 10%);
+    margin-left: 0;
+    line-height: 64px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    height: 64px;
+    font-size: 1.25rem;
+    padding-left: 15px;
+    color: #FFFFFF;
+  }
+
+  .brand-logo {
+    margin-left: 15px;
+  }
+}
+
+@media (max-width: 991px) {
+  .side-nav {
+    padding-top: 25px;
+  }
+
+  .nav-header {
+    display: none;
+  }
+}
+
+.section {
+  padding: 1rem 2rem 1rem 2rem;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+h3 {
+  font-weight: 500;
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.wrapper {
+  a {
+    text-decoration: underline;
+  }
+}
+
+footer {
+  .row {
+    padding: 0px 20px;
+  }
+
+  a {
+    color: #FFFFFF;
+    text-decoration: underline;
+  }
+
+  .footer-copyright {
+    margin-bottom: 0px;
+  }
+}
+
+code,
+kbd,
+pre,
+samp {
+  color: #333;
+  font-family: monospace, monospace;
+  font-size: .875em;
+  overflow: auto;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+}
+
+pre {
+  background-color: #f9f9f9;
+  line-height: 1.75;
+  margin: 1em 0;
+  padding: 1em;
+  border-left: 4px solid $primary-color-light;
+}
+
+code {
+  color: #a60;
+}
+
+pre code {
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 1em;
+  padding: 0;
+}
+
+article {
+  ul {
+    list-style-type: disc !important;
+    list-style-position: inside;
+
+    li {
+      list-style-type: inherit !important;
+    }
+  }
+}
+
+.side-nav {
+  .subheader {
+    pointer-events: initial;
+    font-size: 1.2rem;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}
