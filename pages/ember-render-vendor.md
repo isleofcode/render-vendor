@@ -3,7 +3,7 @@ layout: page
 title: "ember-render-vendor"
 ---
 
-ember-render-vendor provides Ember.js + Electron apps with a tidy + performant interface to `render-vendor.js`.
+[`ember-render-vendor`](https://www.npmjs.com/package/ember-render-vendor) provides Ember.js + Electron apps with a tidy + performant interface to `render-vendor.js`.
 
 `render-vendor.js` vends performant, long-lived renderer processes tuned for repetitive, high-throughput HTML => PDF rendering jobs.
 For more, [see the docs]({{site.baseurl}}/pages/render-vendor-js).
@@ -15,24 +15,6 @@ When an Ember UI is loaded into an Electron `BrowserWindow`, it receives access 
 This global interface observes and emits data it is provided to the generated Glimmer apps.
 The global r-v interface also proxies `render()` commands to the named renderer.
 
-#### Architecture
-
-`ember-render-vendor` automatically injects an **`ember-electron` initializer** which, when called (see sample files below), will:
-
-- `require('render-vendor')` and assign it to the `global` object; and
-- Create a websocket server in the main proc.
-
-**`/renderers`** is where you declare your renderer interfaces.
-Each subdir that does not start with `-` (e.g. `-foo`) MUST contain:
-
-- `renderer.js`, which provides an `attrs` interface used to whitelist & optionally transform data before emitting it to the renderer; and
-- `template.hbs`, a handlebars template to be compiled into the resulting single-page application.
-
-`ember-render-vendor` uses `e-cli` hooks and `Broccoli` to compile a unique **`Glimmer`** app for each `/renderers` subdir.
-All apps inherit from a minimalist base app, which subscribes to a websocket and filters for relevant updates.
-
-When a consumer uses the **`rendererFor`** util to lookup a renderer in the main Ember app and set its model, this model is immediately emitted to the relevant Glimmer app.
-The Glimmer app will automatically update the DOM to render the freshest data, so all calls to `renderer.render()` have little to wait on.
 
 ## Installation
 
@@ -46,6 +28,7 @@ $ ember g ember-render-vendor
 ```
 
 *n.b. we use --save to install e-r-v as a dep, so it will be packaged with your [e-electron](https://github.com/felixrieseberg/ember-electron) builds.*
+
 
 ## Usage
 
@@ -61,7 +44,7 @@ Valid `renderers` subdirs do not start with a `-`, and contain two files:
 
 #### Example
 ```handlebars
-// renderers/invoice/template.hbs
+{!-- renderers/invoice/template.hbs --}
 
 <div id="container">
   <img id="logo" src="{{data.logoUrl}}"/>
@@ -194,6 +177,25 @@ Your built output will look like:
 |-- package.json
 ```
 
+
+## Architecture
+
+`ember-render-vendor` automatically injects an **`ember-electron` initializer** which, when called (see sample files below), will:
+
+- `require('render-vendor')` and assign it to the `global` object; and
+- Create a websocket server in the main proc.
+
+**`/renderers`** is where you declare your renderer interfaces.
+Each subdir that does not start with `-` (e.g. `-foo`) MUST contain:
+
+- `renderer.js`, which provides an `attrs` interface used to whitelist & optionally transform data before emitting it to the renderer; and
+- `template.hbs`, a handlebars template to be compiled into the resulting single-page application.
+
+`ember-render-vendor` uses `e-cli` hooks and `Broccoli` to compile a unique **`Glimmer`** app for each `/renderers` subdir.
+All apps inherit from a minimalist base app, which subscribes to a websocket and filters for relevant updates.
+
+When a consumer uses the **`rendererFor`** util to lookup a renderer in the main Ember app and set its model, this model is immediately emitted to the relevant Glimmer app.
+The Glimmer app will automatically update the DOM to render the freshest data, so all calls to `renderer.render()` have little to wait on.
 
 ## API
 ### rendererFor
