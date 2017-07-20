@@ -3,7 +3,7 @@ layout: page
 title: "render-vendor.js"
 ---
 
-`render-vendor.js` vends performant, long-lived renderer processes tuned for repetitive, high-throughput HTML => PDF rendering jobs.
+[`render-vendor.js`](https://www.npmjs.com/package/render-vendor) vends performant, long-lived renderer processes tuned for repetitive, high-throughput HTML => PDF rendering jobs.
 
 Here are some cases you want a vended renderer:
 
@@ -11,37 +11,16 @@ Here are some cases you want a vended renderer:
 - You need to re-render one or more templates with data provided by another long-lived app / process; or
 - You want to focus on writing your app vs. boilerplate rendering code, but require an expressive API + lots of customizability.
 
-#### Architecture
-
-**RenderVendor** is your primary interface to the lib.
-It wraps initialization & cleanup behaviour, e.g. so you can tidy up with `RenderVendor.shutdown()` at the end of your app's run.
-
-**Renderers** are JS objects that wrap a renderer process (e.g. a headless browser).
-These provide a standard interface to `render()` what the headless browser sees.
-
-Currently, Phantom.js is the only `Renderer` "substrate" shipped with the lib.
-This is because, at time of writing, Headless Chrome cannot render PDFs,
-  and Electron `BrowserWindow`s have fewer available options for managing pagination, headers, footers...
-
-*PRs enabling other substrates are very much welcome!*
-
-The Phantom.js substrate is a long-lived proc with an embedded web server.
-After much research, this seemed the best option for a non-blocking, persistent, scriptable interface to a Phantom.js instance
-(in their defence, secure I/O is hard!).
-
-In summary: `RenderVendor` consumers
-will create `Renderers`,
-which will load arbitrary HTML / a URL on init
-& may be `render()`ed from at any time.
 
 ## Installation
 
 Install via [yarn](https://yarnpkg.com) or [npm](http://npmjs.org/):
 
-```
+```bash
 $ yarn add render-vendor --save
 $ npm install render-vendor --save
 ```
+
 
 ## Usage
 ```javascript
@@ -88,37 +67,30 @@ renderer.shutdown();
 // only you can prevent memory leaks
 ```
 
-## Benchmarks
 
-render-vendor started from an experiment to use `html-pdf` in a project.
-While the API was friendly, each render job took 2-3s to complete.
+## Architecture
 
-On inspection, it seemed most of the penalty came from booting the Phantom process & loading the web assets.
-Simple payloads like the one used above took almost as much time to render as relatively more complete web pages.
+**RenderVendor** is your primary interface to the lib.
+It wraps initialization & cleanup behaviour, e.g. so you can tidy up with `RenderVendor.shutdown()` at the end of your app's run.
 
-Using the following instrumentation script, we have observed render-vendor performance surpass 100x the `html-pdf` method.
-**Namely: several test runs of 100 PDFs rendered resulted in times between 1.5 & 2s, vs. `html-pdf`'s 1 per 2s.**
+**Renderers** are JS objects that wrap a renderer process (e.g. a headless browser).
+These provide a standard interface to `render()` what the headless browser sees.
 
-```javascript
-const RenderVendor = require('render-vendor').default;
-let renderer = RenderVendor.create({ html: '<html><body><h1>hello</h1></body></html>' });
+Currently, Phantom.js is the only `Renderer` "substrate" shipped with the lib.
+This is because, at time of writing, Headless Chrome cannot render PDFs,
+  and Electron `BrowserWindow`s have fewer available options for managing pagination, headers, footers...
 
-function instrument(n) {
-  let q = require('rsvp').resolve();
-  let a = process.hrtime();
+*PRs enabling other substrates are very much welcome!*
 
-  for (n; n > 0; n--) {
-    let i = n;
-    q = q.then(() => renderer.render({ filename: `/tmp/render-instr/${i}.pdf` }));
-  }
+The Phantom.js substrate is a long-lived proc with an embedded web server.
+After much research, this seemed the best option for a non-blocking, persistent, scriptable interface to a Phantom.js instance
+(in their defence, secure I/O is hard!).
 
-  return q.then(() => {
-    let b = process.hrtime();
+In summary: `RenderVendor` consumers
+will create `Renderers`,
+which will load arbitrary HTML / a URL on init
+& may be `render()`ed from at any time.
 
-    console.log([b[0] - a[0], b[1] - a[1]]);
-  });
-}
-```
 
 ## API
 ### RenderVendor
@@ -219,6 +191,39 @@ To override default headers or footers on a specific page, you must create eleme
 ```
 
 The `Renderer` will substitute `$page` & `$numPages` text in headers / footers with the corresponding value.
+
+
+## Benchmarks
+
+render-vendor started from an experiment to use `html-pdf` in a project.
+While the API was friendly, each render job took 2-3s to complete.
+
+On inspection, it seemed most of the penalty came from booting the Phantom process & loading the web assets.
+Simple payloads like the one used above took almost as much time to render as relatively more complete web pages.
+
+Using the following instrumentation script, we have observed render-vendor performance surpass 100x the `html-pdf` method.
+**Namely: several test runs of 100 PDFs rendered resulted in times between 1.5 & 2s, vs. `html-pdf`'s 1 per 2s.**
+
+```javascript
+const RenderVendor = require('render-vendor').default;
+let renderer = RenderVendor.create({ html: '<html><body><h1>hello</h1></body></html>' });
+
+function instrument(n) {
+  let q = require('rsvp').resolve();
+  let a = process.hrtime();
+
+  for (n; n > 0; n--) {
+    let i = n;
+    q = q.then(() => renderer.render({ filename: `/tmp/render-instr/${i}.pdf` }));
+  }
+
+  return q.then(() => {
+    let b = process.hrtime();
+
+    console.log([b[0] - a[0], b[1] - a[1]]);
+  });
+}
+```
 
 ## Todos
 - Test suite
