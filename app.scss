@@ -3,6 +3,7 @@
 ---
 
 @import 'materialize';
+@import 'rouge-theme';
 
 @media (min-width: 991px) {
   .wrapper {
@@ -120,13 +121,7 @@ pre {
   border-left: 4px solid $primary-color-light;
 }
 
-code {
-  color: #a60;
-}
-
 pre code {
-  background-color: #f9f9f9;
-  color: #333;
   font-size: 1em;
   padding: 0;
 }
