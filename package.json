@@ -12,7 +12,7 @@
     "lint": "./node_modules/.bin/eslint src"
   },
   "author": "Aidan Nulman",
-  "license": "MIT",
+  "license": "LGPL-3.0",
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-preset-env": "^1.2.1",
