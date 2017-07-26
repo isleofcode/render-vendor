@@ -54,6 +54,8 @@
     "html",
     "pdf",
     "png",
+    "jpeg",
+    "bmp",
     "phantom",
     "phantomjs",
     "nodejs"
