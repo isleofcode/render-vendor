@@ -13,10 +13,10 @@
     "test": "./node_modules/.bin/_mocha --compilers js:babel-register tests/*-test.js tests/**/*-test.js -t 5s"
   },
   "author": {
-      "name": "Aidan Nulman",
-      "email": "aidan@isleofcode.com",
-      "url": "https://isleofcode.com"
-   },
+    "name": "Aidan Nulman",
+    "email": "aidan@isleofcode.com",
+    "url": "https://isleofcode.com"
+  },
   "contributors": [
     {
       "name": "Alex Blom",
@@ -41,6 +41,7 @@
     "testdouble": "^3.2.2"
   },
   "dependencies": {
+    "babel-runtime": "^6.23.0",
     "lodash": "^4.17.4",
     "phantomjs-prebuilt": "^2.1.4",
     "request": "^2.81.0",
