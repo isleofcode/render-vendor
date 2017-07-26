@@ -12,7 +12,17 @@
     "prepublish": "npm run build",
     "test": "./node_modules/.bin/_mocha --compilers js:babel-register tests/*-test.js tests/**/*-test.js -t 5s"
   },
-  "author": "Aidan Nulman",
+  "author": {
+      "name": "Aidan Nulman",
+      "email": "aidan@isleofcode.com",
+      "url": "https://isleofcode.com"
+   },
+  "contributors": [
+    {
+      "name": "Alex Blom",
+      "email": "alex@isleofcode.com"
+    }
+  ],
   "license": "LGPL-3.0",
   "devDependencies": {
     "babel-cli": "^6.23.0",
