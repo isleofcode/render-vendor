@@ -6,7 +6,7 @@ title: render-vendor
 #### render-vendor is the fastest way to render HTML documents to PDFs
 _(or PNGs, JPEGs, BMPs...)_
 
-The [Renderer](/pages/phantom-renderer) loads HTML templates into [Pages](/pages/page), which are later rendered into the
+The [Renderer](/pages/renderer) loads HTML templates into [Pages](/pages/page), which are later rendered into the
 desired format. With render-vendor, you can:
 
 - Generate PDFs in 10s of milliseconds (10-100x faster than several popular solutions);
