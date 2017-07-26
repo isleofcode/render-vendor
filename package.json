@@ -8,8 +8,9 @@
   "main": "renderer.js",
   "scripts": {
     "build": "babel src -d .",
+    "lint": "./node_modules/.bin/eslint src",
     "prepublish": "npm run build",
-    "lint": "./node_modules/.bin/eslint src"
+    "test": "./node_modules/.bin/_mocha --compilers js:babel-register tests/*-test.js tests/**/*-test.js -t 5s"
   },
   "author": "Aidan Nulman",
   "license": "LGPL-3.0",
