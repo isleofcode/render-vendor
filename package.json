@@ -5,9 +5,9 @@
   "engines": {
     "node": ">=4.0.0"
   },
-  "main": "dist/render-vendor.js",
+  "main": "renderer.js",
   "scripts": {
-    "build": "babel src -d dist",
+    "build": "babel src -d .",
     "prepublish": "npm run build",
     "lint": "./node_modules/.bin/eslint src"
   },

@@ -1,7 +1,17 @@
-node_modules
-dist
-npm-debug.log
+.eslintcache
+.npm
 
-# gh-pages artifacts
-.bundle
-_site
+node_modules
+
+*.log
+npm-debug.log*
+
+# built output (lives in root for easier imports 😄 )
+/renderers
+/page.js
+/renderer.js
+/utils
+
+# rendered output
+*.pdf
+*.png
