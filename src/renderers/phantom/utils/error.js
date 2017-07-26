@@ -1,4 +1,4 @@
-export default class PhantomError extends Error {
+export class PhantomError extends Error {
   constructor(message, trace = []) {
     super(message);
 
@@ -13,3 +13,5 @@ export default class PhantomError extends Error {
       .join('\n');
   }
 }
+
+export default PhantomError;
