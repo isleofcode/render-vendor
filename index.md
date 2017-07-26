@@ -1,37 +1,78 @@
 ---
 layout: page
-title: "render-vendor"
+title: render-vendor
 ---
 
-render-vendor helps you manage long-lived, highly-performant, parallel HTML => PDF rendering queues in Node.js apps.
+#### render-vendor is the fastest way to render HTML documents to PDFs
+_(or PNGs, JPEGs, BMPs...)_
 
-**Some benefits:**
+The [Renderer](/pages/phantom-renderer) loads HTML templates into [Pages](/pages/page), which are later rendered into the
+desired format. With render-vendor, you can:
 
-- Can achieve < 30ms render speeds—10-100x faster than most typical solutions, e.g. [`html-pdf`](https://www.npmjs.com/package/html-pdf), [`wkhtmltopdf`](https://wkhtmltopdf.org);
-- Exposes an asynchronous API to Renderer procs, so your main app can observe rendering state without blocking;
-- Modular architecture makes it easy to swap internal components, e.g. Headless Chrome vs. PhantomJS; and
-- Integrates easily into modern JS build pipelines, so you can use your preferred SPA or templating engine.
-
-**Architecturally**, render-vendor aims to shield your app logic from:
-
-- A long-lived headless browser, which "displays"...
-- An HTML + CSS + JS single-page application, which subscribes to...
-- A websocket server, which will emit relevant data for the rendered page.
+- Generate PDFs in 10s of milliseconds (10-100x faster than several popular solutions);
+- Handle jobs asynchronously;
+- Swap internal components, e.g. Headless Chrome vs. PhantomJS; and
+- Integrate easily into modern JS build pipelines (e.g. React, Glimmer, Vue). For Ember + Electron projects, consider using [ember-render-vendor](https://github.com/isleofcode/ember-render-vendor)
 
 
-#### render-vendor vs. ember-render-vendor
+#### Quickstart
+##### Installation:
 
-This site documents the core render-vendor lib, as well as the companion ember-render-vendor lib. Curious which is for you?
+Install via [yarn](https://yarnpkg.com) or [npm](http://npmjs.org/):
 
-- If you are building an Ember.js + Electron app, and would like to render PDFs from `.hbs` templates, [ember-render-vendor]({{site.baseurl}}/pages/render-vendor-js) has you covered;
-- Else [render-vendor.js]({{site.baseurl}}/pages/render-vendor-js) documents the core API, though you may want to start with the [Quickstart]({{site.baseurl}}/pages/quickstart).
+```bash
+yarn add render-vendor
+npm install render-vendor
+```
+
+[**👶 New to Node.js?:** See more](#new-to-node)
+
+##### Usage:
+
+Open the Node.js REPL (i.e. type `node` in your working directory from above),
+then run the following:
+
+```javascript
+const { Renderer } = require('render-vendor');
+
+Renderer.load('https://isleofcode.com').then((page) => {
+  return page.render('./out.pdf');
+}).catch((err) => {
+  console.error(err);
+}).then(() => {
+  Renderer.destroy();
+}).then(() => {
+  process.exit();
+});
+```
+
+The process should exit automatically, and your directory should have a shiny
+new `out.pdf`!
+
+**⚠ BE CAREFUL: the default Renderer boots a parallel PhantomJS
+process. It is not bound to your REPL / application's lifecycle. Make sure to
+`destroy()` any Renderers you create.**
+
+#### ember-render-vendor
+
+Are you building an Ember.js + Electron app? Check out [ember-render-vendor](https://github.com/isleofcode/ember-render-vendor),
+a companion lib that: uses the Broccoli build pipeline to:
+
+- Synchronizes data between your main application and rendered Page objects; and
+- Uses the Broccoli build pipeline to make writing parallel renderers as simple as writing components.
 
 #### Credits
-render-vendor is maintained by [Isle of Code](https://isleofcode.com) in Toronto. Initial release was sponsored by [Common Sort](https://commonsort.com).
+render-vendor is maintained by [Isle of Code](https://isleofcode.com) in Toronto.
+Initial release was sponsored by [Common Sort](https://commonsort.com).
 
-If you would like to contribute to the project and / or sponsor further development, please do reach out to talk about:
+Thanks also to @marcbachmann & contributors to [`node-html-pdf`](https://github.com/marcbachmann/node-html-pdf), from which the
+PhantomRender's internal `render()` implementation was lovingly aped.
 
-- Adding bindings for other languages, e.g. Ruby, Go;
-- Integrating with other build pipelines or SPA frameworks, e.g. Webpack, React;
-- Deploying to different environments, e.g. web server, embedded device; or
-- Really anything else, just giving you ideas here :)
+<a name='new-to-node'>
+##### 👶 New to Node.js:
+
+Assuming you've [installed Node.js](https://nodejs.org/en/download/), try the following:
+
+- `cd` into a working directory (or `mkdir` a new one);
+- Run `npm init` and follow the prompts to create your first `package.json`; then
+- Run the `npm install` command above: `npm install render-vendor`.
