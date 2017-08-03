@@ -42,6 +42,8 @@
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
+    "commander": "^2.11.0",
+    "listr": "^0.12.0",
     "lodash": "^4.17.4",
     "phantomjs-prebuilt": "^2.1.4",
     "request": "^2.81.0",
