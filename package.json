@@ -5,6 +5,9 @@
   "engines": {
     "node": ">=4.0.0"
   },
+  "bin": {
+    "render-vendor": "./bin/render-vendor"
+  },
   "main": "renderer.js",
   "scripts": {
     "build": "babel src -d .",
