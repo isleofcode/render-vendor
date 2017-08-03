@@ -1,0 +1,53 @@
+#! /usr/bin/env node
+
+const Listr = require('listr');
+const { Renderer } = require('../renderer');
+
+module.exports = function(urls) {
+  process.on('uncaughtException', () => {
+    Renderer.destroy();
+    process.exit(1);
+  });
+
+  let tasks = new Listr([{
+    title: `Booting a ${Renderer.rendererConstructor.name}`,
+    task: () => Renderer.renderer.boot()
+  }, {
+    title: 'Rendering webpages',
+    task: (ctx, task) => new Listr(urls.map((url) => {
+      return makeRenderUrlTaskObjectFor.call(this, url, task);
+    }), {
+      concurrent: true,
+      exitOnError: false
+    })
+  }, {
+    title: `Shutting down ${Renderer.renderer.constructor.name}`,
+    task: () => Renderer.destroy()
+  }], {
+    exitOnError: false
+  });
+
+  tasks.run()
+    .then(() => process.exit(0))
+    .catch(() => process.exit(1));
+}
+
+function makeRenderUrlTaskObjectFor(url, loadTask) {
+  return {
+    title: `${url}: Loading...`,
+    task: (ctx, task) => Renderer.load(url)
+      .then((page) => {
+        let format = this.format || 'pdf';
+
+        task.title = `${url}: Rendering ${format}...`;
+
+        return page.render({ format });
+      })
+      .then((filepath) => {
+        loadTask.title = [
+          loadTask.title,
+          `   ✔ ${url}: Rendered to ${filepath}`
+        ].join('\n');
+      })
+  };
+}

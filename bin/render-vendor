@@ -1,0 +1,38 @@
+#! /usr/bin/env node
+
+const _ = require('lodash');
+const program = require('commander');
+const { version } = require('../package.json');
+
+const COMMANDS = {
+  kill: 'kill spawned renderers',
+  list: 'list spawned renderers'
+}
+
+let urls = [];
+let isCommand = process.argv[0].endsWith('node') &&
+  process.argv[1].endsWith('render-vendor') &&
+  Object.keys(COMMANDS).includes(process.argv[2]) ||
+  Object.keys(COMMANDS).includes(process.argv[1]);
+
+program.version(version);
+
+_.forEach(COMMANDS, (description, name) => {
+  program.command(name, description)
+});
+
+program
+  .option('-f, --format [value]', 'output format; default = \'pdf\'')
+  .arguments('[urls...]')
+  .action((_urls) => {
+    urls = [...urls, ..._urls];
+  })
+  .parse(process.argv);
+
+if (!isCommand) {
+  if (urls.length === 0) {
+    process.exit(0);
+  }
+
+  require('./render-vendor-print').call(program, urls);
+}

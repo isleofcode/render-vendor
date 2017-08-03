@@ -1,0 +1,19 @@
+#! /usr/bin/env node
+
+const childProcess = require('child_process');
+let listScriptComponents = [
+  'ps aux',
+  'grep render-vendor',
+  'grep phantomjs',
+  'grep -v grep',
+]
+
+try {
+  let stdout = childProcess.execSync(listScriptComponents.join(' | '));
+
+  console.log(stdout.toString());
+} catch (err) {
+  // nop; nothing found
+}
+
+process.exit(0);
