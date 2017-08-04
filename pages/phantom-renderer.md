@@ -43,6 +43,7 @@ final adjustments to the presented document's rendered output:
 | `quality` | Number | 75 | Quality with which to render output (for PNG + JPEG types). |
 | `paperSize` | Object | - | PhantomJS primitive to set values like margin, orientation, headers and footers on the page. For more, [see the PhantomJS `paperSize` docs](http://phantomjs.org/api/webpage/property/paper-size.html). |
 
+<a name='valid-formats'></a>
 `format` may be any of the following values:
 
 - html;
