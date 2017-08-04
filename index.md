@@ -58,14 +58,14 @@ process. It is not bound to your REPL / application's lifecycle. Make sure to
 Are you building an Ember.js + Electron app? Check out [ember-render-vendor](https://github.com/isleofcode/ember-render-vendor),
 a companion lib that: uses the Broccoli build pipeline to:
 
-- Synchronizes data between your main application and rendered Page objects; and
-- Uses the Broccoli build pipeline to make writing parallel renderers as simple as writing components.
+- Synchronize data between your main application and rendered Page objects; and
+- Make writing parallel renderering queues as simple as writing components.
 
 #### Credits
 render-vendor is maintained by [Isle of Code](https://isleofcode.com) in Toronto.
 Initial release was sponsored by [Common Sort](https://commonsort.com).
 
-Thanks also to @marcbachmann & contributors to [`node-html-pdf`](https://github.com/marcbachmann/node-html-pdf), from which the
+Thanks also to @marcbachmann & contributors to [`node-html-pdf`](https://github.com/marcbachmann/node-html-pdf), from which
 PhantomRender's internal `render()` implementation was lovingly aped.
 
 <a name='new-to-node'>
