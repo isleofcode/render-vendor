@@ -16,18 +16,29 @@ desired format. With render-vendor, you can:
 
 
 #### Quickstart
-##### Installation:
+##### Global (CLI) interface:
+```bash
+yarn global add render-vendor
+// or npm install -g render-vendor
+
+render-vendor https://isleofcode.com https://google.com
+```
+
+[**👶 New to Node.js?:** See more](#new-to-node)
+
+<img src='/images/cli-demo.gif' alt='render-vendor cli demo'>
+
+##### Library (Node.js) interface
+**Installation:**
 
 Install via [yarn](https://yarnpkg.com) or [npm](http://npmjs.org/):
 
 ```bash
 yarn add render-vendor
-npm install render-vendor
+// or npm install --save render-vendor
 ```
 
-[**👶 New to Node.js?:** See more](#new-to-node)
-
-##### Usage:
+**Usage:**
 
 Open the Node.js REPL (i.e. type `node` in your working directory from above),
 then run the following:
@@ -68,7 +79,7 @@ Initial release was sponsored by [Common Sort](https://commonsort.com).
 Thanks also to @marcbachmann & contributors to [`node-html-pdf`](https://github.com/marcbachmann/node-html-pdf), from which
 PhantomRender's internal `render()` implementation was lovingly aped.
 
-<a name='new-to-node'>
+<a name='new-to-node'></a>
 ##### 👶 New to Node.js:
 
 Assuming you've [installed Node.js](https://nodejs.org/en/download/), try the following:
