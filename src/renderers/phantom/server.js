@@ -194,15 +194,15 @@ export class Server {
 }
 
 Server.Error = class ServerError extends Error {
-  get name() { 'ServerError' }
+  get name() { return 'ServerError' }
 }
 
 Server.Error.UnknownMethod = class UnknownMethodError extends Server.Error {
-  get name() { 'ServerError.UnknownMethod' }
+  get name() { return 'ServerError.UnknownMethod' }
 }
 
 Server.Error.PageNotFound = class PageNotFoundError extends Server.Error {
-  get name() { 'ServerError.PageNotFound' }
+  get name() { return 'ServerError.PageNotFound' }
 }
 
 export default Server;
