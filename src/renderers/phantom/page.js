@@ -85,6 +85,26 @@ export class Page {
       logger.emit(didLoadPage, this.id);
     };
 
+    page.onResourceError = ({ url, errorCode, errorString }) => {
+      logger.error(`resource error: ${url} - ${errorCode} ${errorString}`);
+    };
+
+    page.onResourceReceived = ({ url }) => {
+      logger.info(`resource received: ${url}`);
+    };
+
+    page.onResourceRequested = ({ url }) => {
+      logger.info(`resource requested: ${url}`);
+    };
+
+    page.onResourceTimeout = ({ url, errorCode, errorString }) => {
+      logger.error(`resource timeout: ${url} - ${errorCode} ${errorString}`);
+    };
+
+    page.onConsoleMessage = (msg, lineNum, sourceId) => {
+      logger.info(`CONSOLE: ${msg} (from line ${sourceId}:${lineNum})`);
+    }
+
     return page;
   }
 
