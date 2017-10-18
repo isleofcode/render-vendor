@@ -14,7 +14,7 @@ render-vendor ships with a default Renderer. You access it
 using the public API, exposed as static properties + functions on the `Renderer`
 constructor. The public API is also available on every Renderer instance.
 
-See [PhantomRenderer](/pages/phantom-renderer) for documentation about the options accepted by:
+See [ChromeRenderer](/pages/chrome-renderer) & [PhantomRenderer](/pages/phantom-renderer) for documentation about the options accepted by:
 
 - `Renderer.load(id, options)`
 - `Page#render(options)`
