@@ -40,7 +40,7 @@ successful promise will resolve with, either via `await` or `.then(...)`.
 
 | Function signature | Return value | Description |
 | `async load(id, options = {})` | Page | Proxies directly to renderer's `loadPage` implementation; will reset `isLoading` if the renderer throws. |
-| `async render(filename, options = {})` | * | Parses provided arguments and proxies to renderer's `renderPage` implementation. If `filename` is omitted, `options` will be parsed from the first argument passed. If `filename` or `options.filename` exist, and `options.format` is blank or invalid (not a string), this function will try to parse the desired format from the filename. |
+| `async render([filename,] options = {})` | * | Parses provided arguments and proxies to renderer's `renderPage` implementation. If `filename` is omitted, `options` will be parsed from the first argument passed. If `filename` or `options.filename` exist, and the Renderer-specific type / format option is blank or invalid (not a string), this function will try to parse the desired format from the filename. |
 | `async destroy()` | - | Proxies directly to renderer's `unloadPage` implementation; will reset `isDestroying` if the renderer throws. |
 
 #### Static Methods:
