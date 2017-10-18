@@ -40,6 +40,10 @@ export class PhantomRenderer extends Renderer {
     return denodeify(request);
   }
 
+  static get pagePathParamKey() {
+    return 'filename';
+  }
+
   constructor(attrs = {}) {
     super(attrs);
 
