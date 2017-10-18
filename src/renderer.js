@@ -16,7 +16,7 @@ let defaultRenderer;
 
 export class Renderer extends EventEmitter {
   static get rendererConstructor() {
-    return this._rendererConstructor || require('./renderers/phantom').default;
+    return this._rendererConstructor || require('./renderers/chrome').default;
   }
 
   static set rendererConstructor(value) {
