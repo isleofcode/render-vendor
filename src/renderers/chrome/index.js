@@ -17,6 +17,10 @@ export class ChromeRenderer extends Renderer {
     this._DEFAULT_BOOT_OPTIONS = value;
   }
 
+  static get pagePathParamKey() {
+    return 'path';
+  }
+
   constructor(attrs = {}) {
     super(attrs);
 
