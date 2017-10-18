@@ -3,14 +3,18 @@ layout: page
 title: PhantomRenderer
 ---
 
-render-vendor ships with PhantomRenderer, a default Renderer implementation that
-uses a long-lived, parallel renderer process to load, manage, and render Pages.
+render-vendor ships with PhantomRenderer, a Renderer implementation that uses a
+long-lived, parallel renderer process to load, manage, and render Pages.
 
-PhantomRenderers are particularly well-suited to applications looking to render
-static output from dynamic templates (e.g. invoicing or ticketing software, POS
-terminals piping data to networked printers...). Render jobs benchmark in 10s of
-ms once booted, vs. ranges of 100s of ms to several seconds for other popular
-approaches, making PhantomRenderers ideal for high-throughput environments.
+We recommend using a [ChromeRenderer](/pages/chrome-renderer) whenever possible, as it implements more
+modern web standards & APIs, and its architecture is less prone to memory leaks.
+However, some use cases may be better suited to Phantom's environment. The
+PhantomRenderer can achieve similar rendering speeds as the ChromeRenderer, so
+using it should not significantly impact performance.
+
+**⚠ BE CAREFUL: the PhantomRenderer boots a parallel PhantomJS process. It is
+not bound to your REPL / application's lifecycle. Make sure to `destroy()` any
+PhantomRenderers you create.**
 
 PhantomRenderers extend the base [Renderer](/pages/renderer) class to support the following options:
 

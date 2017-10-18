@@ -60,10 +60,6 @@ Renderer.load('https://isleofcode.com').then((page) => {
 The process should exit automatically, and your directory should have a shiny
 new `out.pdf`!
 
-**⚠ BE CAREFUL: the default Renderer boots a parallel PhantomJS
-process. It is not bound to your REPL / application's lifecycle. Make sure to
-`destroy()` any Renderers you create.**
-
 #### ember-render-vendor
 
 Are you building an Ember.js + Electron app? Check out [ember-render-vendor](https://github.com/isleofcode/ember-render-vendor),
@@ -77,7 +73,7 @@ render-vendor is maintained by [Isle of Code](https://isleofcode.com) in Toronto
 Initial release was sponsored by [Common Sort](https://commonsort.com).
 
 Thanks also to @marcbachmann & contributors to [`node-html-pdf`](https://github.com/marcbachmann/node-html-pdf), from which
-PhantomRender's internal `render()` implementation was lovingly aped.
+PhantomRenderer's internal `render()` implementation was lovingly aped.
 
 <a name='new-to-node'></a>
 ##### 👶 New to Node.js:
