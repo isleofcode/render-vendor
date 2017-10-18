@@ -102,11 +102,13 @@ export class Page {
   async render(options = {}, ...args) {
     assert.ok(!this.isDestroyed && !this.isDestroying && this.isLoaded);
 
-    if (isString(options)) {
+    let pagePathParamKey = this.renderer.constructor.pagePathParamKey;
+
+    if (isString(pagePathParamKey) && isString(options)) {
       let filename = options;
 
       options = isPresent(args[0]) ? args[0] : {};
-      options.filename = filename;
+      options[pagePathParamKey] = filename;
     }
 
     if (isString(options.filename) && !isString(options.format)) {

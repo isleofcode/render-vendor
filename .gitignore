@@ -1,6 +1,7 @@
 .eslintcache
 .npm
 
+dist
 node_modules
 
 *.log
