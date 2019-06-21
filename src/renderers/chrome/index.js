@@ -134,6 +134,12 @@ export class ChromeRenderer extends Renderer {
           delete options.emulateMedia;
         }
 
+        await page._chromePage.waitForNavigation({
+          waitUntil: 'networkidle',
+          networkIdleInflight: 0,
+          timeout: 0
+        });
+
         buffer = await page._chromePage.pdf(options);
         break;
       default:
