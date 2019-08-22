@@ -122,8 +122,10 @@ export class ChromeRenderer extends Renderer {
       type = type.length > 0 ? type : 'html';
     }
 
-    if (waitForNavigation !== false) {
-      if (waitForNavigation === Object(waitForNavigation)) {
+    if (waitForNavigation !== null && waitForNavigation !== undefined) {
+      if (waitForNavigation === false) {
+        return;
+      } else if (waitForNavigation === Object(waitForNavigation)) {
         await page._chromePage.waitForNavigation(waitForNavigation);
       } else {
         await page._chromePage.waitForNavigation({
@@ -132,8 +134,8 @@ export class ChromeRenderer extends Renderer {
           timeout: 0
         });
       }
+      delete options.waitForNavigation;
     }
-    delete options.waitForNavigation;
 
     switch (type) {
       case 'html':
