@@ -114,12 +114,27 @@ export class ChromeRenderer extends Renderer {
   }
 
   async renderPage(page, options = {}) {
-    let { path: filepath, type } = options;
+    let { path: filepath, type, waitForNavigation } = options;
     let buffer;
 
     if (!isString(type)) {
       type = isString(filepath) ? path.extname(filepath).slice(1) : 'html';
       type = type.length > 0 ? type : 'html';
+    }
+
+    if (waitForNavigation !== null && waitForNavigation !== undefined) {
+      if (waitForNavigation === false) {
+        return;
+      } else if (waitForNavigation === Object(waitForNavigation)) {
+        await page._chromePage.waitForNavigation(waitForNavigation);
+      } else {
+        await page._chromePage.waitForNavigation({
+          waitUntil: 'networkidle',
+          networkIdleInflight: 0,
+          timeout: 0
+        });
+      }
+      delete options.waitForNavigation;
     }
 
     switch (type) {
