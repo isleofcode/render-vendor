@@ -1,6 +1,6 @@
 {
-  "name": "render-vendor",
-  "version": "0.2.0",
+  "name": "@commonsort/render-vendor",
+  "version": "0.2.1",
   "description": "The fastest way to render HTML documents to PDFs",
   "engines": {
     "node": ">=4.0.0"
@@ -24,6 +24,10 @@
     {
       "name": "Alex Blom",
       "email": "alex@isleofcode.com"
+    },
+    {
+      "name": "Sam Power",
+      "email": "sam@commonsort.com"
     }
   ],
   "license": "LGPL-3.0",
@@ -55,7 +59,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/isleofcode/render-vendor.git"
+    "url": "git://github.com/commonsort/render-vendor.git"
   },
   "keywords": [
     "html",
@@ -68,7 +72,7 @@
     "nodejs"
   ],
   "bugs": {
-    "url": "https://github.com/isleofcode/render-vendor/issues"
+    "url": "https://github.com/commonsort/render-vendor/issues"
   },
-  "homepage": "https://github.com/isleofcode/render-vendor"
+  "homepage": "https://github.com/commonsort/render-vendor"
 }
